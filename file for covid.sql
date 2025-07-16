@@ -26,15 +26,14 @@ ORDER BY 1 , 2;
 SELECT 
     location,
     date,
-    total_cases,
-    total_deaths,
-    population
--- max(total_cases)  as Infection_Rate
--- MAX(total_cases / population) * 100 AS population_Infection_percentage
+    population,
+    max(total_cases)  as Highestnfectionrate,
+    MAX(total_cases / population) * 100 AS populationpercentageinfaction
 FROM
-    portfolio.`covid deaths`;
-    -- group by location,population;
-   --  order by population_Infection_percentage desc;
+    portfolio.`covid deaths`
+    group by location,population,date
+    order by populationpercentageinfaction desc;
+
 select max(total_cases)from portfolio.`covid deaths`;
 -- showing countries with Highest Death count per population 
 select max(total_deaths) as TotalDeathCount,location
